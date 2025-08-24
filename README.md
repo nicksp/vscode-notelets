@@ -1,8 +1,4 @@
-<p align="center">
-  <img src="./images/icon.png" height="128" />
-</p>
-
-<h1 align="center">Notelets</h1>
+# Notelets
 
 <a href="https://marketplace.visualstudio.com/items?itemName=nicksp.notelets" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/nicksp.notelets.svg?color=eee&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a> <a href="https://open-vsx.org/extension/nicksp/notelets" target="__blank"><img src="https://img.shields.io/open-vsx/v/nicksp/notelets?color=eee&amp;label=Open%20VSX%20Registry&logo=open-vsx" alt="Open VSX Version" /></a>
 
@@ -28,7 +24,7 @@ Add sticky notes for your code — Markdown files alongside your project, organi
 
 ![Notelets with a tree view](screenshots/screenshot-2.png)
 
-![Notelets with a tree view](screenshots/statusbar-item.png)
+![Notelets status bar icon](screenshots/statusbar-item.png)
 
 ## Motivation
 
@@ -39,6 +35,13 @@ I wanted a coherent workflow where lightweight documentation lives with the code
 - No proprietary storage, no external sync, and works offline on any machine.
 - Collaboration is simple: commit, push, review, and share with the team like any other code change.
 - Minimal UI and zero lock‑in by design.
+
+> [!TIP]
+> To exclude notelets from version control, add `notelets.notesFolder` setting value to your `.gitignore`:
+>
+> ```shell
+> .vscode/notelets/
+> ```
 
 ## Commands
 
@@ -91,6 +94,6 @@ Bug fixes are welcome, but not new features. Read our [contributing guidelines](
 
 [Nick Plekhanov](https://plekhanov.me) and [contributors](https://github.com/nicksp/vscode-notelets/graphs/contributors).
 
-<a href="[https://www.freepik.com/search](https://www.freepik.com/search)">Icon by Creative Squad</a>.
+[Icon by Creative Squad](https://www.freepik.com/search).
 
 [MIT License](LICENSE.md).
