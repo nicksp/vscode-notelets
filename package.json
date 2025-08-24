@@ -1,0 +1,137 @@
+{
+  "publisher": "nicksp",
+  "name": "notelets",
+  "displayName": "Notelets",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.15.0",
+  "description": "Add sticky notes to any file in your workspace",
+  "author": {
+    "name": "Nick Plekhanov"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/nicksp/vscode-notelets#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicksp/vscode-notelets"
+  },
+  "bugs": {
+    "url": "https://github.com/nicksp/vscode-notelets/issues"
+  },
+  "galleryBanner": {
+    "color": "#e3f2fd"
+  },
+  "keywords": [
+    "note",
+    "notes",
+    "markdown",
+    "markdown-notes",
+    "note taking",
+    "note-taking",
+    "notetaking",
+    "productivity",
+    "notepad",
+    "notebook",
+    "scratchpad",
+    "writing",
+    "notelets"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "icon": "images/icon.png",
+  "engines": {
+    "node": ">=20.0.0",
+    "vscode": "^1.94.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "notelets.openNote",
+        "title": "Notelets: Open or Create Note"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "notelets",
+          "title": "Notelets",
+          "icon": "$(notebook)"
+        }
+      ]
+    },
+    "views": {
+      "notelets": [
+        {
+          "id": "notelets.views.notes",
+          "name": "Notes",
+          "icon": "$(notebook)"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Notelets",
+      "properties": {
+        "notelets.notesFolder": {
+          "type": "string",
+          "default": ".vscode/notelets",
+          "description": "Relative path to the root folder where Notelets are stored."
+        },
+        "notelets.openBehavior": {
+          "type": "string",
+          "enum": ["editor", "markdownPreview"],
+          "default": "editor",
+          "description": "How to open notes: in a normal editor tab or Markdown preview."
+        },
+        "notelets.showStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show a status bar item when a file has a Notelet."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "nr build --watch --sourcemap",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "vscode:prepublish": "NODE_ENV=production nr build",
+    "publish": "vsce publish --no-dependencies",
+    "publish:ovsx": "nlx ovsx publish",
+    "pack": "vsce package --no-dependencies",
+    "test": "vitest",
+    "test:ci": "vitest --run",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp && nr publish && nr publish:ovsx",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^5.2.1",
+    "@antfu/ni": "^25.0.0",
+    "@types/node": "^22.17.2",
+    "@types/vscode": "^1.94.0",
+    "@vscode/vsce": "^3.6.0",
+    "bumpp": "^10.2.3",
+    "eslint": "^9.34.0",
+    "husky": "9.1.7",
+    "lint-staged": "16.1.5",
+    "pnpm": "^10.15.0",
+    "tsdown": "^0.14.1",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.3",
+    "vitest": "^3.2.4"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,mjs,cjs,ts,tsx,md}": "eslint . --fix"
+  }
+}
