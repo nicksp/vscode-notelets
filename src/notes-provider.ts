@@ -3,7 +3,7 @@ import type { TreeDataProvider, Uri } from 'vscode'
 import { EventEmitter, ThemeIcon, TreeItem, TreeItemCollapsibleState, workspace } from 'vscode'
 
 import { getConfig } from './utils/configuration'
-import { normalizePath } from './utils/notes'
+import { normalizePathForGlob } from './utils/notes'
 
 class NoteItem extends TreeItem {
   constructor(public readonly uri: Uri) {
@@ -29,7 +29,7 @@ export default class NotesProvider implements TreeDataProvider<TreeItem> {
     }
 
     const folder = getConfig('notesFolder')
-    const normalizedFolder = normalizePath(folder)
+    const normalizedFolder = normalizePathForGlob(folder)
     const notes = await workspace.findFiles(`**/${normalizedFolder}**/*.md`)
     notes.sort((a, b) => a.fsPath.localeCompare(b.fsPath))
     return notes.map(u => new NoteItem(u))

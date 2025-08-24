@@ -1,6 +1,6 @@
 import type { WorkspaceFolder } from 'vscode'
 
-import { normalize, sep } from 'node:path'
+import { sep } from 'node:path'
 
 import { commands, Uri, ViewColumn, window, workspace } from 'vscode'
 
@@ -8,18 +8,30 @@ import { getConfig } from './configuration'
 import { logger } from './debugger'
 
 export function normalizePath(path: string): string {
-  const normalized = normalize(path)
-  return normalized.endsWith(sep) ? normalized : `${normalized}${sep}`
+  let normalized = path.replace(/\\/g, '/')
+  if (normalized.endsWith('/') || normalized.endsWith('\\')) {
+    normalized = normalized.slice(0, -1)
+  }
+  return `${normalized}${sep}`
+}
+
+export function normalizePathForGlob(path: string): string {
+  const normalized = path.replace(/\\/g, '/')
+  return normalized.endsWith('/') ? normalized : `${normalized}/`
 }
 
 export function isNoteFile(uri: Uri): boolean {
   const folder = getConfig('notesFolder')
   const workspaceFolders = workspace.workspaceFolders ?? []
 
+  const uriPath = uri.path.replace(/\\/g, '/')
+  const posixFolder = folder.replace(/\\/g, '/')
+  const posixFolderWithSlash = posixFolder.endsWith('/') ? posixFolder : `${posixFolder}/`
+
   for (const wf of workspaceFolders) {
-    const notesRoot = Uri.joinPath(wf.uri, normalizePath(folder))
-    const rootPath = notesRoot.path.endsWith('/') ? notesRoot.path : `${notesRoot.path}/`
-    if (uri.path.startsWith(rootPath)) {
+    const wfPath = wf.uri.path.replace(/\\/g, '/').replace(/\/+$/, '')
+    const rootPath = `${wfPath}/${posixFolderWithSlash}`
+    if (uriPath.startsWith(rootPath)) {
       return true
     }
   }
