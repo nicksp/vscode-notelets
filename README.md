@@ -83,6 +83,13 @@ The changelog can be found in [CHANGELOG.md](CHANGELOG.md).
 Check out my other Visual Studio Code extensions:
 
 - [Reveal on GitHub](https://marketplace.visualstudio.com/items?itemName=nicksp.reveal-on-github) — open the current project or file on GitHub
+- [Tidy Space](https://marketplace.visualstudio.com/items?itemName=nicksp.tidy-space) — keep your workspace clutter-free: only one sidebar at a time
+
+## Sponsoring
+
+This project is maintained in my spare time. If this has been helpful to you, consider supporting its continued development and maintenance.
+
+<a href="https://buymeacoffee.com/plekhanov" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-yellow.png" alt="Buy Me A Coffee" height="51" width="217"></a>
 
 ## Contributing
 

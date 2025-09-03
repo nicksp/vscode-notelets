@@ -9,6 +9,9 @@
   "author": {
     "name": "Nick Plekhanov"
   },
+  "sponsor": {
+    "url": "https://buymeacoffee.com/plekhanov"
+  },
   "license": "MIT",
   "homepage": "https://github.com/nicksp/vscode-notelets#readme",
   "repository": {
